@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE glassfish-web-app PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 4.0 Servlet 3.1//EN" "http://glassfish.org/dtds/glassfish-web-app_4_0-0.dtd">
+<sun-web-app>
+    <class-loader delegate="false"/>
+    <property name="useMyFaces" value="true"/>
+</sun-web-app>

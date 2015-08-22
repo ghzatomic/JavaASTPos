@@ -1,0 +1,8 @@
+user:Actor
+StatementType:StatementType
+
+user:StatementType.getEnumByClasse
+StatementType[0]:StatementType.values
+StatementType[1]:StatementType.getClasse
+StatementType[1]:StatementType.getClasse
+StatementType[1]:StatementType.getClasse

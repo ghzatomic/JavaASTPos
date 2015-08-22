@@ -1,0 +1,7 @@
+user:Actor
+StatementType:StatementType
+
+user:StatementType.<clinit>
+StatementType[0]:StatementType.<init>
+StatementType[1]:StatementType.<init>
+StatementType[1]:StatementType.<init>

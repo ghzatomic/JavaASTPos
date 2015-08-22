@@ -1,0 +1,9 @@
+user:Actor
+BlockEntity:BlockEntity
+StatementEntity:StatementEntity
+
+user:BlockEntity.addStatement
+BlockEntity[0]:BlockEntity.getStatementList
+BlockEntity[1]:BlockEntity.getOrdemGen
+BlockEntity[1]:StatementEntity.setOrdem
+BlockEntity[0]:BlockEntity.getStatementList

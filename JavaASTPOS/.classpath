@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="lib" path="lib/commons/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-configuration-1.6.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="lib/commons/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j/slf4j-api-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j/slf4j-log4j12-1.6.1.jar"/>
+	<classpathentry kind="lib" path="lib/log4j/log4j-1.2.16.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.text_3.5.101.v20110928-1504.jar"/>
+	<classpathentry kind="lib" path="lib/antlr/antlr-4.2-complete.jar"/>
+	<classpathentry kind="lib" path="lib/ast/ui-3.2.1-r321_v20060907.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/GeneralPurposeObjects"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.core.contenttype_3.4.100.v20100505-1235.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.core.jobs-3.5.100.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.core.resources-3.7.100.jar" sourcepath="C:/Users/GHZ/.m2/repository/org/eclipse/core/org.eclipse.core.resources/3.7.100/org.eclipse.core.resources-3.7.100-sources.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.core.runtime-3.9.0-v20130326-1255.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.equinox.common-3.6.200-v20130402-1505.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.equinox.preferences-3.5.100-v20130422-1538.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.jdt.core-3.7.1.jar" sourcepath="C:/Users/GHZ/.m2/repository/org/eclipse/jdt/org.eclipse.jdt.core/3.7.1/org.eclipse.jdt.core-3.7.1-sources.jar"/>
+	<classpathentry kind="lib" path="lib/ast/org.eclipse.osgi-3.8.0.v20120529-1548.jar" sourcepath="C:/Users/GHZ/.m2/repository/org/eclipse/tycho/org.eclipse.osgi/3.8.0.v20120529-1548/org.eclipse.osgi-3.8.0.v20120529-1548-sources.jar"/>
+	<classpathentry kind="lib" path="lib/ast/text-3.3.0-v20070606-0010.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
+	<classpathentry kind="con" path="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v7.0">
+		<attributes>
+			<attribute name="owner.project.facets" value="jst.utility"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="owner.project.facets" value="java"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

@@ -1,0 +1,130 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+		xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core">
+    <h:head>
+        <title>Arvore de sources</title>
+        <!-- <script type="text/javascript" src="../scripts/shCore.js"></script>
+        <script type="text/javascript" src="../scripts/shBrushJava.js"></script> -->
+		<link href="../css/shCore.css" rel="stylesheet" type="text/css" />
+		<link href="../css/shThemeDefault.css" rel="stylesheet" type="text/css" />
+		<link rel="stylesheet" href="../css/styles/default.css"/>
+		<script src="../scripts/highlight.pack.js"></script>
+	<script type="text/javascript">
+		hljs.initHighlightingOnLoad();
+	</script>
+</h:head> 
+    <h:body> 
+        <h:form id="frmArvore" prependId="false">
+        	<p:layout id="layout" fullPage="true">
+        		<p:layoutUnit position="west" size="300" header="Classes" resizable="true" closable="false" collapsible="false">
+		        	<p:tree value="#{arvoreSourceView.rootTreeSources}" var="node" dynamic="true" id="tree" selectionMode="single"
+					selection="#{arvoreSourceView.selectedNode}"  style="overflow-x:scroll;overflow-y:scroll;height:100%;width:100%;">
+						<p:ajax event="select" update=":frmArvore:pg_busca, :frmArvore:tbViewCentro:txtCode" process="@this" oncomplete="hljs.initHighlightingOnLoad();" listener="#{arvoreSourceView.displaySelectedClass}"  />  
+						<p:treeNode id="treeNode" type="source">
+							<h:outputText value="#{node.nome}" id="lblNode"  />
+						</p:treeNode>
+						<p:treeNode id="treeNodePacote" type="pacote">
+							<h:outputText value="#{node.nome}" id="lblNodePacote"  />
+						</p:treeNode>
+						<p:treeNode id="treeNodeClasse" type="classe">
+							<h:outputText value="#{node.nome}" id="lblNodeClasse"  />
+						</p:treeNode>
+						<p:treeNode id="treeNodeFuncao" type="metodo">
+							<h:outputText value="#{node.nome}" id="lblNodeFuncao"  />
+						</p:treeNode>
+					</p:tree>
+				</p:layoutUnit>
+				<p:layoutUnit position="north" size="135" header="Busca" resizable="true" closable="false" collapsible="false">
+					<p:panelGrid id="pg_busca" style="width:100%; " styleClass="pg_busca">  
+		        		<p:row>
+			        		<p:column colspan="2">
+			        			<p:outputLabel value="Digite o nome da função para busca" />
+			        		</p:column>
+			        	</p:row>
+			        	<p:row>
+			        		<p:column >
+			        			<!-- <p:inputText id="objetoNome" value="#{arvoreSourceView.objNome}"/> -->
+								<p:inputText id="funcaoNome" value="#{arvoreSourceView.funcaoNome}" style="width:80%; "/>
+			        			<p:commandButton action="#{arvoreSourceView.executaLeitura()}" value="Buscar" update="dtResultados"/>
+			        		</p:column>
+			        	</p:row>
+			        </p:panelGrid>
+		
+				</p:layoutUnit>
+				
+				<p:layoutUnit position="east" size="400" header="Resultados" resizable="true" closable="false" collapsible="false" effect="drop">
+			        <p:dataTable id="dtResultados" var="objeto" rowIndexVar="indice" value="#{arvoreSourceView.resultadoDataModel}" paginator="true" paginatorPosition="bottom"
+						paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="10" rows="10" 
+						emptyMessage="Sem registros" widgetVar="dtResultadosWV" lazy="true" dynamic="true">
+				
+						<p:ajax event="toggleSelect" partialSubmit="false" immediate="true" process="dtResultados,@this,dtResultados" update="dtResultados">
+						</p:ajax>
+				
+						<p:ajax event="rowSelect" partialSubmit="false" immediate="true" process="dtResultados,@this,dtResultados" update="dtResultados">
+						</p:ajax>
+				
+						<p:ajax partialSubmit="false" event="rowUnselect" immediate="true" process="dtResultados,@this,dtResultados" update="dtResultados">
+						</p:ajax>
+				
+						<p:ajax partialSubmit="false" event="rowSelectCheckbox" immediate="true" process="dtResultados,@this,dtResultados" update="dtResultados">
+						</p:ajax>
+				
+						<p:ajax partialSubmit="false" event="rowUnselectCheckbox" immediate="true" process="dtResultados,@this,dtResultados" update="dtResultados">
+						</p:ajax>
+				
+						<p:column styleClass="ui-tablecell-nopadding" sortBy="#{objeto.nome}" exportable="true" disabledSelection="true">
+							<f:facet name="header">
+								<h:outputText value="Função" />
+							</f:facet>
+				
+							<h:outputText actionListener="#{arvoreSourceView.onClickMetodo}" value="#{objeto.pai} " styleClass="ui-full-width ui-datagrid-command" style="display:block;" >
+							</h:outputText>
+						</p:column>
+						
+						<p:column styleClass="ui-tablecell-nopadding" sortBy="#{objeto.nome}" exportable="true" disabledSelection="true" >
+							<f:facet name="header">
+								<h:outputText value="Linha" />
+							</f:facet>
+				
+							<h:outputText actionListener="#{arvoreSourceView.onClickMetodo}" value="#{objeto.linha}" styleClass="ui-full-width ui-datagrid-command" style="display:block;" >
+							</h:outputText>
+						</p:column>
+				
+					</p:dataTable>
+			    </p:layoutUnit>
+				
+				<p:layoutUnit position="center">
+					<p:tabView id="tbViewCentro">
+        				<p:tab title="Código">
+        					<p:outputLabel value="A classe apresentada não contem imports e declaraçõe de pacotes."/><br/>
+        					<p:outputLabel value="A numeração de linha deve ser desconsiderada."/>
+					        <p:scrollPanel id="sourcePanel" style="width:100%;height:100%" mode="native">
+								<pre><code class="hljs java"> 
+		<h:outputText id="txtCode" value="#{arvoreSourceView.getCodigoSelectedNode()}"/>
+								</code></pre>
+							</p:scrollPanel>
+						</p:tab>
+						<p:tab title="Estrutura">
+						<p:mindmap value="#{arvoreSourceView.mmRoot}" 
+							style="width: 100%;height: 600px;border: 1px solid black;">
+							<p:ajax event="select" listener="#{arvoreSourceView.onNodeSelect}" />
+							<p:ajax event="dblselect" listener="#{arvoreSourceView.onNodeDblselect}" update="output" oncomplete="PF('details').show();" />
+						</p:mindmap>
+						<p:dialog widgetVar="details" header="Detalhes" maximizable="true" position="center" 
+							resizable="false" modal="false" showEffect="fade"
+							hideEffect="fade">
+							<h:outputText id="output" value="#{arvoreSourceView.mmSelectedNode.data}" />
+						</p:dialog>
+					</p:tab>
+					</p:tabView>
+			    </p:layoutUnit>
+			    
+			</p:layout>
+		</h:form>
+    </h:body>
+</html>
+
